@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>The Game</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src = "model.js"></script>
+    <script src = "view.js"></script>
+    <script src = "controller.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href ="styles.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  <div class = "container">
+    <div class = "row header">
+      <div class = "col-md-6">The Game</div>
+      <div class = "col-md-6" id = "score">Score: 0</div>
+    </div>
+    <div class = "row">
+      <div class = "col-md-3 card">
+        <span class = "big-num">100</span><br>
+        <span class="glyphicon glyphicon-arrow-down"></span><br>
+        <span class = "small-num">2</span>
+      </div>
+      <div class = "col-md-3 card">
+        <span>Empty Pile</span>
+      </div>
+      <div class = "col-md-3 card">
+        <span>Empty Pile</span>
+      </div>
+      <div class = "col-md-3 card">
+        <span class = "big-num">100</span><br>
+        <span class="glyphicon glyphicon-arrow-down"></span><br>
+        <span class = "small-num">2</span>
+      </div>
+    </div>
+    <!--Row 2-->
+    <div class = "row">
+      <div class = "col-md-3 card">
+        <span class = "small-num">99</span><br>
+        <span class="glyphicon glyphicon-arrow-up"></span><br>
+        <span class = "big-num">1</span>
+      </div>
+      <div class = "col-md-3 card">
+        <span>Empty Pile</span>
+      </div>
+      <div class = "col-md-3 card">
+        <span>Empty Pile</span>
+      </div>
+      <div class = "col-md-3 card">
+        <span class = "small-num">99</span><br>
+        <span class="glyphicon glyphicon-arrow-up"></span><br>
+        <span class = "big-num">1</span>
+      </div>
+    </div>
+    <!--Row 3-->
+    <div class = "row">
+      <div class = "col-md-2" id = "cards-left">
+        Cards Left: 98
+      </div>
+      <div class ="col-md-8" id ="player-hand">
+      </div>
+      <div class="col-md-2 done-button">
+        <button>Done</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

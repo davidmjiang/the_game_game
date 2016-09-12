@@ -1,0 +1,32 @@
+.header{
+  font-size: 40px;
+}
+
+.card{
+  border: 2px solid black;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+}
+
+.player-card{
+  display: inline-block;
+  border: 2px solid black;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  text-align: center;
+  font: 100px/220px Georgia, Times New Roman, serif;
+}
+
+.card span{
+  text-align: center;
+}
+
+.big-num{
+  font-size: 30px;
+}
+
+.small-num{
+  font-size: 20px;
+}
