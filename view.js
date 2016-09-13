@@ -2,31 +2,31 @@ var cardListeners = {
   
   init: function(controller){
     this.controller = controller;
-    $(".player-card").click(cardListeners.chooseCard);
+    $("#player-hand").on("click", ".player-card", cardListeners.chooseCard);
     $(".check-pile").click(cardListeners.checkPile);
     $(".done-button").click(cardListeners.doneButton);
     $(".choose-pile").click(cardListeners.choosePile);
-  }
+  },
 
   chooseCard: function(e){
     //make chosenCard, chosenPile, pileToCheck local and then pass them to the controller as arguments
     //choose pile listener should be in init, and then the model should decide whether or not it is allowed to be pressed
-    var chosenCard = e.target.text;
-    this.controller.storeCard(chosenCard);
+    var chosenCard = e.target.innerHTML;
+    cardListeners.controller.storeCard(chosenCard);
   },
 
   choosePile: function(e){
     var chosenPile = $(e.target).attr("data-id");
-    controller.checkMove(chosenPile);
+    cardListeners.controller.checkMove(chosenPile);
   },
 
   checkPile: function(e){
     var pileToCheck = e.target.attr("data-id");
-    controller.checkPile();
+    cardListeners.controller.checkPile();
   },
 
   doneButton: function(e){
-    controller.dealCards();
+    cardListeners.controller.dealCards();
   }
 
 }
@@ -41,7 +41,7 @@ var view = {
     //set player hand
     this.showPlayerHand(model_data.hand);
     this.cardListener = cardListeners;
-    this.cardListeners.init(this.controller);
+    this.cardListener.init(controller);
   },
 
   showPlayerHand: function(cards, selected_card){
@@ -49,7 +49,7 @@ var view = {
       var $newCard = $("<div></div>")
                       .text(card)
                       .addClass("player-card");
-      if(selected_card === card){
+      if(parseInt(selected_card) === card){
         $newCard.addClass("selected");
       }
       $("#player-hand").append($newCard);

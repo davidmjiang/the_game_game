@@ -8,6 +8,12 @@ var model = {
     this.cardsToPlay = 2;
     this.setupPiles();
     this.currentCard = null;
+    this.PILE_TRANSLATER = {
+    "going-down-1": this.down1,
+    "going-down-2": this.down2,
+    "going-up-1": this.up1,
+    "going-up-2": this.up2
+    };
   },
 
   setupCards: function(){
@@ -43,11 +49,18 @@ var model = {
   },
 
   setupPiles: function(){
-    this.up1 = [];
-    this.up2 = [];
-    this.down1 = [];
-    this.down2 = [];
+    this.up1 = [1];
+    this.up2 = [1];
+    this.down1 = [100];
+    this.down2 = [100];
   },
+
+  // PILE_TRANSLATER: {
+  //   "going-down-1": this.down1,
+  //   "going-down-2": this.down2,
+  //   "going-up-1": this.up1,
+  //   "going-up-2": this.up2
+  // },
 
   storeCard: function(chosenCard){
     //unclicking a card that is already chosen
@@ -62,23 +75,23 @@ var model = {
 
   checkLegalPlay: function(pile, card){
   //check if there is a currentcard
-    if(!currentCard){
+    if(!this.currentCard){
       return false;
     }
-    var cardPile = PILE_TRANSLATER[pile];
+    var cardPile = this.PILE_TRANSLATER[pile];
     var topCard = cardPile[cardPile.length-1];
     //for going down piles, legal plays are < top card or top card +10
     if(pile === "going-down-1" || pile === "going-down-2"){
-      return currentCard < topCard || currentcard === topCard + 10;
+      return parseInt(this.currentCard) < topCard || parseInt(this.currentCard) === topCard + 10;
     }
     //for going up piles, legal plays are > top card or top card -10
     else{
-      return currentcard > topCard || currentcard === topCard - 10;
+      return parseInt(this.currentCard) > topCard || parseInt(this.currentCard) === topCard - 10;
     }
   },
 
   addCardToPile: function(pile){
-    pile.push(this.curentCard);
+    this.PILE_TRANSLATER[pile].push(this.currentCard);
     this.cardsToPlay --;
   },
 
@@ -94,13 +107,6 @@ var model = {
         this.hand.splice(i,1);
       }
     }
-  },
-
-  PILE_TRANSLATER = {
-    "going-down-1": this.down1,
-    "going-down-2": this.down2,
-    "going-up-1": this.up1,
-    "going-up-2": this.up2
   },
 
   getPile: function(pile){
