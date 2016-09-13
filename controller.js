@@ -6,8 +6,44 @@ var controller = {
     var model_data = {
       score: this.model.score,
       hand: this.model.hand,
-      deck_left: this.model.deck.length
+      selected_card: this.model.currentCard;
+      deck_left: this.model.deck.length,
+      up1: this.model.up1[this.model.up1.length-1],
+      up2: this.model.up2[this.model.up2.length-1],
+      down1: this.model.down1[this.model.down1.length-1],
+      down2: this.model.down2[this.model.down2.length-1],
+      playedEnoughCards: this.model.playedEnoughCards
     }
-    this.view.init(model_data);
+    this.view.init(this, model_data);
+  },
+
+  storeCard: function(){
+    this.model.storeCard(chosenCard);
+    this.view.clear();
+    this.view.render();
+  }
+
+  checkMove: function(chosenPile){
+   if(this.model.checkLegalPlay(chosenPile)){
+      this.makeMove(chosenPile);
+    }
+    else{
+      this.view.showError();
+    }
+  },
+
+  makeMove: function(chosenPile){
+    this.model.makeMove(chosenPile);
+    this.view.clear();
+    this.view.render();
+  },
+
+  checkPile: function(pile){
+    var cards = this.model.getPile(pile);
+    this.view.showPile(cards);
+  },
+
+  dealCards: function(){
+    this.model.dealCards();
   }
 }

@@ -3,6 +3,7 @@ card array: 2-99
 score
 cards to play
 cards in hand
+All four piles
 
 shuffle the card array
 deal cards
