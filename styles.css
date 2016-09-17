@@ -4,19 +4,20 @@
 
 .card{
   border: 2px solid black;
-  width: 150px;
-  height: 220px;
+  width: 130px;
+  height: 200px;
   border-radius: 10px;
 }
 
 .player-card{
   display: inline-block;
   border: 2px solid black;
-  width: 150px;
-  height: 220px;
+  width: 130px;
+  height: 200px;
   border-radius: 10px;
   text-align: center;
   font: 100px/220px Georgia, Times New Roman, serif;
+  cursor: pointer;
 }
 
 .card span{

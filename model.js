@@ -8,6 +8,7 @@ var model = {
     this.cardsToPlay = 2;
     this.setupPiles();
     this.currentCard = null;
+    this.gameOver = false;
     this.PILE_TRANSLATER = {
     "going-down-1": this.down1,
     "going-down-2": this.down2,
@@ -49,10 +50,10 @@ var model = {
   },
 
   setupPiles: function(){
-    this.up1 = [1];
-    this.up2 = [1];
-    this.down1 = [100];
-    this.down2 = [100];
+    this.up1 = [];
+    this.up2 = [];
+    this.down1 = [];
+    this.down2 = [];
   },
 
   // PILE_TRANSLATER: {
@@ -75,35 +76,48 @@ var model = {
 
   checkLegalPlay: function(pile, card){
   //check if there is a currentcard
-    if(!this.currentCard){
+  var c = card || this.currentCard;
+    if(!c){
       return false;
     }
     var cardPile = this.PILE_TRANSLATER[pile];
-    var topCard = cardPile[cardPile.length-1];
+    var topCard;
+    if(cardPile.length > 0){
+      topCard = cardPile[cardPile.length-1];
+    }
+    else{
+      if(pile === "going-down-1" || pile === "going-down-2"){
+        topCard = 100;
+      }
+      else{
+        topCard = 1;
+      }
+    }
     //for going down piles, legal plays are < top card or top card +10
     if(pile === "going-down-1" || pile === "going-down-2"){
-      return parseInt(this.currentCard) < topCard || parseInt(this.currentCard) === topCard + 10;
+      return parseInt(c) < topCard || parseInt(c) === topCard + 10;
     }
     //for going up piles, legal plays are > top card or top card -10
     else{
-      return parseInt(this.currentCard) > topCard || parseInt(this.currentCard) === topCard - 10;
+      return parseInt(c) > topCard || parseInt(c) === topCard - 10;
     }
   },
 
   addCardToPile: function(pile){
-    this.PILE_TRANSLATER[pile].push(this.currentCard);
+    this.PILE_TRANSLATER[pile].push(parseInt(this.currentCard));
     this.cardsToPlay --;
   },
 
   makeMove: function(chosenPile){
     this.addCardToPile(chosenPile);
     this.updatePlayerHand();
-    
+    this.currentCard = null;
+    this.score ++;
   },
 //remove the played card from the player's hand
   updatePlayerHand: function(){
     for(var i = 0; i < this.hand.length; i++){
-      if(this.hand[i] === this.currentCard){
+      if(this.hand[i] === parseInt(this.currentCard)){
         this.hand.splice(i,1);
       }
     }
@@ -117,7 +131,31 @@ var model = {
     return this.cardsToPlay <= 0;
   },
 
+  hasLegalPlay: function(card){
+    var decks = [];
+    for(deck in this.PILE_TRANSLATER){
+      decks.push(deck);
+    }
+    for(var i = 0; i < decks.length; i++){
+      if(this.checkLegalPlay(decks[i], card)){
+        return true;
+      }
+    }
+    return false;
+  },
+
   checkGameEnd: function(){
     //check if any cards in players hands would be legal plays in any of the decks
+    if(this.cardsToPlay <= 0){
+      this.gameOver = false;
+      return;
+    }
+    for(var i = 0; i < this.hand.length; i++){
+      if(this.hasLegalPlay(this.hand[i])){
+        this.gameOver = false;
+        return;
+      }
+    }
+    this.gameOver = true;
   }
 }

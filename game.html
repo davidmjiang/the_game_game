@@ -13,9 +13,77 @@
 <body>
   <div class = "container">
     <div class = "row header">
-      <div class = "col-md-6">The Game</div>
-      <div class = "col-md-6" id = "score">Score: 0</div>
+      <div class = "col-md-6">
+        <h1>The Game</h1>
+        <button class="btn btn-default hide" id="rules-btn">See Rules</button>
+         <button class="btn btn-default" id="close-rules">Close Rules</button>
+        <button class="btn btn-default" id="reveal-piles">See all piles</button>
+         <button class="btn btn-default hide" id="close-piles">Close piles</button>
+      </div>
+      <div class = "col-md-6">
+        <h2 id="score">Score: 0<h2>
+        <div id = "cards-left">
+            Cards Left: 98
+        </div>
+        <div class="done-button hide">
+            <button>Draw cards</button>
+        </div>
+      </div>
     </div>
+    <div id="rules">
+      <h4>Goal</h4>
+      <p>The goal of The Game is to play as many cards as possible onto the four piles.</p>
+      <h4>Setup</h4>
+      <p>The deck has 98 cards, one for each number between 2 and 98. You start by drawing 7 cards into your hand. Each turn, you must play at least 2 cards from your hand before drawing back to 7.</p>
+      <h4>The Piles</h4>
+      <p>Two piles start from 1 and go up to 99. You may play a card on these piles only if it is larger than the top card of the pile.</p>
+      <p>Two piles start from 100 and go down to 2. You may play a card on these piles only if is smaller than the top card of the pile</p>
+      <h4>Jumping</h4>
+      <p>In addition to the rules above, you may also play a "jump". For the piles going down, you may play a card EXACTLY 10 more than the top card. For the piles going up, you may play a card EXACTLY 10 less than the top card. For example, on a piles that is going down with a top card of 55, you may play 65. The game continues as normal, playing cards lower than 65.</p>
+      <h4>End of Game</h4>
+      <p>The game ends if you can no longer make a legal play from the cards in your hand.<p>
+      <h4>Good luck!</h4>
+    </div>
+    <div id="all-piles" class="hide">
+      <div class = "row">
+        <div class = "col-md-3 card">
+          <span class = "big-num">100</span><br>
+          <span class="glyphicon glyphicon-arrow-down"></span><br>
+          <span class = "small-num">2</span>
+        </div>
+        <div class = "col-md-3 pile card going-down-1-all">
+          <span></span>
+        </div>
+        <div class = "col-md-3 pile card going-down-2-all">
+          <span></span>
+        </div>
+        <div class = "col-md-3 card" data-id = "going-down">
+          <span class = "big-num">100</span><br>
+          <span class="glyphicon glyphicon-arrow-down"></span><br>
+          <span class = "small-num">2</span>
+        </div>
+      </div>
+    <!--Row 2-->
+      <div class = "row">
+        <div class = "col-md-3 card" data-id =  "going-up">
+          <span class = "small-num">99</span><br>
+          <span class="glyphicon glyphicon-arrow-up"></span><br>
+          <span class = "big-num">1</span>
+        </div>
+        <div class = "col-md-3 pile card going-up-1-all">
+          <span></span>
+        </div>
+        <div class = "col-md-3 pile card going-up-2-all">
+          <span></span>
+        </div>
+        <div class = "col-md-3 card" data-id = "going-up">
+          <span class = "small-num">99</span><br>
+          <span class="glyphicon glyphicon-arrow-up"></span><br>
+          <span class = "big-num">1</span>
+        </div>
+      </div>
+  </div>
+  <div id="live-piles">
     <div class = "row">
       <div class = "col-md-3 card">
         <span class = "big-num">100</span><br>
@@ -27,10 +95,10 @@
         </div>
       </div>
       <div class = "col-md-3 pile card going-down-1">
-        <span>Empty Pile</span>
+        <span></span>
       </div>
       <div class = "col-md-3 pile card going-down-2">
-        <span>Empty Pile</span>
+        <span></span>
       </div>
       <div class = "col-md-3 card" data-id = "going-down">
         <span class = "big-num">100</span><br>
@@ -54,10 +122,10 @@
         </div>
       </div>
       <div class = "col-md-3 pile card going-up-1">
-        <span>Empty Pile</span>
+        <span></span>
       </div>
       <div class = "col-md-3 pile card going-up-2">
-        <span>Empty Pile</span>
+        <span></span>
       </div>
       <div class = "col-md-3 card" data-id = "going-up">
         <span class = "small-num">99</span><br>
@@ -69,18 +137,12 @@
         </div>
       </div>
     </div>
+  </div>
     <!--Row 3-->
     <div class = "row">
-      <div class = "col-md-2" id = "cards-left">
-        Cards Left: 98
-      </div>
-      <div class ="col-md-8" id ="player-hand">
-      </div>
-      <div class="col-md-2 done-button hide">
-        <button>Done</button>
+      <div class ="col-md-12" id ="player-hand">
       </div>
     </div>
-
   </div>
 </body>
 </html>
