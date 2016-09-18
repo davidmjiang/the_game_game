@@ -99,8 +99,13 @@ var view = {
 
  listCards: function(cards){
   var message = "";
-  cards.forEach(function(card){
-    message += card + " "
+  cards.forEach(function(card, idx){
+    if(idx === cards.length-1){
+      message += card;
+    }
+    else{
+      message += card + ", ";
+    }
   });
   return message;
  },
@@ -115,22 +120,30 @@ var view = {
  render: function(model_data){
   this.showPlayerHand(model_data.hand, model_data.selected_card);
   //show top card of each pile
-  var $newCard = $("<div></div>")
-                      .text(model_data.down1[model_data.down1.length-1])
-                      .addClass("player-card");
-  $(".going-down-1").append($newCard);
-  var $newCard2 = $("<div></div>")
-                      .text(model_data.down2[model_data.down2.length-1])
-                      .addClass("player-card");
-  $(".going-down-2").append($newCard2);
-  var $newCard3 = $("<div></div>")
-                      .text(model_data.up1[model_data.up1.length-1])
-                      .addClass("player-card");
-  $(".going-up-1").append($newCard3);
-  var $newCard4 = $("<div></div>")
-                      .text(model_data.up2[model_data.up2.length-1])
-                      .addClass("player-card");
-  $(".going-up-2").append($newCard4);
+  if(model_data.down1.length > 0){
+    var $newCard = $("<div></div>")
+                        .text(model_data.down1[model_data.down1.length-1])
+                        .addClass("player-card");
+    $(".going-down-1").append($newCard);
+  }
+  if(model_data.down2.length > 0){
+    var $newCard2 = $("<div></div>")
+                        .text(model_data.down2[model_data.down2.length-1])
+                        .addClass("player-card");
+    $(".going-down-2").append($newCard2);
+  }
+  if(model_data.up1.length > 0){
+    var $newCard3 = $("<div></div>")
+                        .text(model_data.up1[model_data.up1.length-1])
+                        .addClass("player-card");
+    $(".going-up-1").append($newCard3);
+  }
+  if(model_data.up2.length > 0){
+    var $newCard4 = $("<div></div>")
+                        .text(model_data.up2[model_data.up2.length-1])
+                        .addClass("player-card");
+    $(".going-up-2").append($newCard4);
+  }
   //show cards left in deck
   $("#cards-left").text("Cards left: "+ model_data.deck_left);
   //show score
