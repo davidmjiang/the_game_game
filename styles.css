@@ -1,9 +1,14 @@
+.main{
+  background-color: black;
+  color: white;
+}
+
 .header{
   font-size: 40px;
 }
 
 .card{
-  border: 2px solid black;
+  border: 2px solid white;
   width: 130px;
   height: 200px;
   border-radius: 10px;
@@ -11,7 +16,7 @@
 
 .player-card{
   display: inline-block;
-  border: 2px solid black;
+  border: 2px solid white;
   width: 130px;
   height: 200px;
   border-radius: 10px;
@@ -25,19 +30,30 @@
 }
 
 .big-num{
-  font-size: 30px;
+  font-size: 50px;
+  font-family: Georgia, Times New Roman, serif;;
 }
 
 .small-num{
-  font-size: 20px;
+  font-size: 35px;
+  font-family: Georgia, Times New Roman, serif;
 }
 
 .selected{
   outline: none;
-  border-color: #9ecaed;
-  box-shadow: 0 0 10px #9ecaed;
+  border-color: yellow;
+  box-shadow: 0 0 10px yellow;
 }
 
 .hide{
   display: none;
+}
+
+.choose-pile{
+  margin-left: 40px;
+}
+
+.arrow{
+  font-size: 20px;
+  margin-top: 10px;
 }
