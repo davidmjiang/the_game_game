@@ -51,6 +51,7 @@ var controller = {
 
   dealCards: function(){
     this.model.dealCards();
+    this.model.checkGameEnd();
     this.view.clear();
     this.view.render(this.modelData());
   }
