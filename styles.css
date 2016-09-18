@@ -35,7 +35,7 @@
 }
 
 .small-num{
-  font-size: 35px;
+  font-size: 25px;
   font-family: Georgia, Times New Roman, serif;
 }
 
@@ -56,4 +56,8 @@
 .arrow{
   font-size: 20px;
   margin-top: 10px;
+}
+
+#draw-cards{
+  background-color: black;
 }

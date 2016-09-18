@@ -1,3 +1,5 @@
+var DECK_SIZE = 99;
+
 var model = {
   init: function(){
     this.setupCards();
@@ -19,7 +21,7 @@ var model = {
 
   setupCards: function(){
     this.deck = [];
-    for(var i = 2; i <= 99; i++){
+    for(var i = 2; i <= DECK_SIZE; i++){
       this.deck.push(i);
     }
     this.shuffle(this.deck);
@@ -146,6 +148,10 @@ var model = {
 
   checkGameEnd: function(){
     //check if any cards in players hands would be legal plays in any of the decks
+    if(this.deck.length === 0 & this.hand.length === 0){
+      this.gameOver = true;
+      return;
+    }
     if(this.cardsToPlay <= 0){
       this.gameOver = false;
       return;

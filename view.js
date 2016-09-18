@@ -148,8 +148,8 @@ var view = {
   $("#cards-left").text("Cards left: "+ model_data.deck_left);
   //show score
   $("#score").text("Score: " + model_data.score);
-  //show Done button if cardsToPlay is 0
-  if(model_data.playedEnoughCards){
+  //show Done button if cardsToPlay is 0 and there are cards in the deck
+  if(model_data.playedEnoughCards && model_data.deck_left > 0){
     $(".done-button").removeClass("hide");
    }
   else{
